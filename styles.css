@@ -1,0 +1,60 @@
+body {
+    /* background-color: grey; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* height: 100vh; */
+    font-family: 'Comfortaa', cursive;
+}
+
+header {
+
+    display: flex;
+}
+
+.header-container {
+    /* background-color: blue; */
+}
+
+.main-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* background-color: green; */
+}
+
+.container {
+    border: 1px solid black;
+    width: 90%;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    border: 1px solid black;
+    width: 200px;
+    margin: 5px;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+.temp {
+    display: flex;
+    justify-content: center;
+}
+
+.condition-container {
+    height: 60px;
+}
+
+.img-section {
+    background-image: url("img/partlycloudy.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 150px;
+}
