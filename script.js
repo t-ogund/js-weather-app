@@ -6,10 +6,12 @@ const lowTemp = document.getElementsByClassName("low-temp");
 const condition = document.getElementsByClassName("condition");
 const imgSection = document.getElementsByClassName("img-section");
 const date = document.getElementsByClassName("date");
+const narrative = document.getElementsByClassName("narrative");
+const icon = document.getElementsByClassName("icon");
 
 submitButton.addEventListener("click", function() {
     event.preventDefault()
-    fetch(`https://api.weatherbit.io/v2.0/forecast/daily?&postal_code=${inputData.value}&country=US&key=ec69804a082347b592321d0caf2b15cb`)
+    fetch(`https://api.weatherbit.io/v2.0/forecast/daily?&units=I&postal_code=${inputData.value}&country=US&key=ec69804a082347b592321d0caf2b15cb`)
     .then(response => response.json())
     .then(response => {
         const fiveDayForecast = response.data.slice(0, 5)
@@ -17,13 +19,13 @@ submitButton.addEventListener("click", function() {
 
         for (let i = 0; i < highTemp.length; i++) {
             for (let j = 0; j < fiveDayForecast.length; j++) {
-                highTemp[i].textContent = Math.floor(((fiveDayForecast[i].high_temp * 9/5) + 32)) + " /"
+                highTemp[i].textContent = Math.floor(fiveDayForecast[i].high_temp) + " /"
             }
         }
 
         for (let i = 0; i < lowTemp.length; i++) {
             for (let j = 0; j < fiveDayForecast.length; j++) {
-                lowTemp[i].textContent = Math.floor(((fiveDayForecast[i].low_temp * 9/5) + 32)) 
+                lowTemp[i].textContent = Math.floor(fiveDayForecast[i].low_temp) 
             }
         }
 
@@ -33,13 +35,40 @@ submitButton.addEventListener("click", function() {
             }
         }
 
-        for (let i = 0; i < date.length; i++) {
-            for (let j = 0; j < fiveDayForecast.length; j++) {
-                const date = fiveDayForecast[i].datetime
+        for (let k = 0; k < date.length; k++) {
+            console.log(date[k])
+            for (let l = 0; l < fiveDayForecast.length; l++) {
+                const formattedDate = fiveDayForecast[k].datetime.slice(6)
                 
-                date[i].textContent = fiveDayForecast[i].datetime
+                console.log(formattedDate.replace("-", "/"))
+                date[k].textContent = formattedDate.replace("-", "/");
+            }
+
+        }
+
+        for (let i = 0; i < narrative.length; i++) {
+            for (let j = 0; j < fiveDayForecast.length; j++) {
+                const windSpeed = Math.floor(fiveDayForecast[i].wind_spd)
+                console.log(windSpeed)
+
+                const windDirection = fiveDayForecast[i].wind_cdir_full
+                console.log(windDirection)
+
+                narrative[i].textContent = `${windSpeed} MPH winds from the ${windDirection}`
             }
         }
+
+        // for (let i = 0; i < icon.length; i++) {
+        //     for (let j = 0; j < fiveDayForecast.length; j++) {
+        //         console.log(icon[i])
+        //         icon[i].textContent = fiveDayForecast[i].weather.icon
+        //     }
+        // }
+
+        fetch("/icons/icons")
+            .then(icons => icons.json())
+            .then(icons => console.log(icons.length))
+
     })
     console.log(inputData.value)
 

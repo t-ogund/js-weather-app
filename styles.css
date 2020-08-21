@@ -52,7 +52,7 @@ header {
 }
 
 .img-section {
-    background-image: url("img/partlycloudy.jpg");
+    background-image: url("https://www.weatherbit.io/static/img/icons/r01d.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
