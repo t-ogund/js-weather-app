@@ -5,29 +5,24 @@ body {
     align-items: center; */
     /* height: 100vh; */
     font-family: 'Comfortaa', cursive;
-    background-image: url("img/aaron-burden-BTubi6qaY6Q-unsplash.jpg");
+    /* background-image: url("img/aaron-burden-BTubi6qaY6Q-unsplash.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
-}
-
-header {
-    /* display: flex; */
-    /* text-align: center; */
-    /* background-color: red; */
+    background-position: center; */
+    /* height: 100%; */
+    background-color: rgb(208, 223, 230);
+    color: rgb(42, 43, 46);
 }
 
 .header-container {
-    /* background-color: blue; */
     text-align: center;
-    /* display: flex; */
 }
 
 input, button {
     margin-bottom: 20px;
     width: 200px;
     text-align: center;
-    border: 1px solid grey;
+    border: 2px solid grey;
     height: 30px;
     border-radius: 15px;
     outline: none;
@@ -43,25 +38,34 @@ button {
     justify-content: center;
     align-items: center;
     height: 100%;
-    /* background-color: green; */
 }
 
 .container {
-    /* border: 1px solid black; */
     width: 90%;
     height: 400px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    position: relative;
+    animation: weather-container;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes weather-container {
+    0% {top: -50px; opacity: 0}
+    100% {top: 0px; opacity: 1}
+
 }
 
 .card {
-    border: 1px solid black;
+    border: 2px solid grey;
     width: 200px;
     margin: 5px;
     border-radius: 10px;
     padding: 5px;
     text-align: center;
+    display: none;
 }
 
 .temp {
@@ -81,10 +85,12 @@ button {
     height: 150px;
 }
 
-/* #test {
-    background-image: url("icons/icons/a01d.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 150px;
-} */
+@media (max-width: 1270px) {
+    .container {
+        width: 50%;
+    }
+
+    /* .card {
+        width: 100%;
+    } */
+}

@@ -8,14 +8,18 @@ const imgSection = document.getElementsByClassName("img-section");
 const date = document.getElementsByClassName("date");
 const narrative = document.getElementsByClassName("narrative");
 const icon = document.getElementsByClassName("icon");
+const card = document.getElementsByClassName("card");
 
 submitButton.addEventListener("click", function() {
     event.preventDefault()
+    
     fetch(`https://api.weatherbit.io/v2.0/forecast/daily?&units=I&postal_code=${inputData.value}&country=US&key=ec69804a082347b592321d0caf2b15cb`)
     .then(response => response.json())
     .then(response => {
         const fiveDayForecast = response.data.slice(0, 5)
         console.log(fiveDayForecast)
+
+        inputData.value = "";
 
         for (let i = 0; i < highTemp.length; i++) {
             for (let j = 0; j < fiveDayForecast.length; j++) {
@@ -43,42 +47,54 @@ submitButton.addEventListener("click", function() {
                 console.log(formattedDate.replace("-", "/"))
                 date[k].textContent = formattedDate.replace("-", "/");
             }
+        }
 
+        for (let i = 0; i < day.length; i++) {
+            for (let j = 0; j < fiveDayForecast.length; j++) {
+                const ymd = fiveDayForecast[j].datetime
+                console.log(ymd)
+                const workingOnDate = moment(ymd);
+                const dow = workingOnDate.day()
+                console.log(dow)
+
+                if (dow === 0) {
+                    day[j].textContent = "Sunday";
+                } else if (dow === 1) {
+                    day[j].textContent = "Monday";
+                } else if (dow === 2) {
+                    day[j].textContent = "Tuesday";
+                } else if (dow === 3) {
+                    day[j].textContent = "Wednesday";
+                } else if (dow === 4) {
+                    day[j].textContent = "Thursday";
+                } else if (dow === 5) {
+                    day[j].textContent = "Friday";
+                } else {
+                    day[j].textContent = "Saturday";
+                } 
+            } 
         }
 
         for (let i = 0; i < narrative.length; i++) {
             for (let j = 0; j < fiveDayForecast.length; j++) {
                 const windSpeed = Math.floor(fiveDayForecast[i].wind_spd)
-                console.log(windSpeed)
-
+ 
                 const windDirection = fiveDayForecast[i].wind_cdir_full
-                console.log(windDirection)
 
                 narrative[i].textContent = `${windSpeed} MPH winds from the ${windDirection}`
             }
         }
 
-        // for (let i = 0; i < icon.length; i++) {
-        //     for (let j = 0; j < fiveDayForecast.length; j++) {
-        //         console.log(icon[i])
-        //         icon[i].textContent = fiveDayForecast[i].weather.icon
-        //     }
-        // }
-
        for (let i = 0; i < imgSection.length; i++) {
-           console.log(imgSection[i])
+        //    console.log(imgSection[i])
            for (let j = 0; j < fiveDayForecast.length; j++) {
-            console.log(fiveDayForecast[i].weather.icon)
+            // console.log(fiveDayForecast[i].weather.icon)
             imgSection[i].style.backgroundImage = `url("icons/icons/${fiveDayForecast[i].weather.icon}.png")`
            }
        }
     })
 
-
-    console.log(inputData.value)
-
-
-    // for (let i = 0; i < highTemp.length; i++) {
-    //     highTemp[i].textContent = response.data.high_temp
-    // }
+    for (let i = 0; i < card.length; i++) {
+        card[i].style.display = "block";
+    }
 })
