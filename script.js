@@ -65,11 +65,16 @@ submitButton.addEventListener("click", function() {
         //     }
         // }
 
-        fetch("/icons/icons")
-            .then(icons => icons.json())
-            .then(icons => console.log(icons.length))
-
+       for (let i = 0; i < imgSection.length; i++) {
+           console.log(imgSection[i])
+           for (let j = 0; j < fiveDayForecast.length; j++) {
+            console.log(fiveDayForecast[i].weather.icon)
+            imgSection[i].style.backgroundImage = `url("icons/icons/${fiveDayForecast[i].weather.icon}.png")`
+           }
+       }
     })
+
+
     console.log(inputData.value)
 
 
