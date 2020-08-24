@@ -48,12 +48,12 @@ button {
     justify-content: center;
     position: relative;
     animation: weather-container;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 
 @keyframes weather-container {
-    0% {top: -50px; opacity: 0}
+    0% {top: -25px; opacity: 0}
     100% {top: 0px; opacity: 1}
 
 }
@@ -65,7 +65,7 @@ button {
     border-radius: 10px;
     padding: 5px;
     text-align: center;
-    display: none;
+    /* display: none; */
 }
 
 .temp {
