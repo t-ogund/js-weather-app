@@ -12,11 +12,38 @@ body {
     /* height: 100%; */
     background-color: rgb(208, 223, 230);
     color: rgb(42, 43, 46);
+    margin: 0;
+}
+
+#query {
+    /* background-color: green; */
+    /* display: inline;
+    position: absolute; */
+    margin: 10px 0 10px 0;; 
+    font-size: 1rem;
+    color: black;
+    font-weight: bold;
 }
 
 .header-container {
     text-align: center;
+    /* background-color: yellow; */
+    background-image: url("img/aaron-burden-BTubi6qaY6Q-unsplash.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
 }
+
+h1 {
+    /* background-color: purple; */
+    /* display: inline; */
+    margin: 0 ;
+}
+/* 
+#header-span {
+    display: inline;
+} */
 
 input, button {
     margin-bottom: 20px;
@@ -26,6 +53,11 @@ input, button {
     height: 30px;
     border-radius: 15px;
     outline: none;
+}
+
+::placeholder {
+    font-style: italic;
+    font-size: 1em;
 }
 
 button {
