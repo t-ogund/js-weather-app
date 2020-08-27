@@ -100,7 +100,7 @@ onLoad();
 
 submitButton.addEventListener("click", function() {
     event.preventDefault()
-    query.textContent = inputData.value;
+        
 
         if (inputData.value == Number(inputData.value)) {
             // console.log("same")
@@ -108,8 +108,11 @@ submitButton.addEventListener("click", function() {
     .then(response => response.json())
     .then(response => {
         console.log(response)
+        // console.log(response.data)
         const fiveDayForecast = response.data.slice(0, 5)
-        console.log(fiveDayForecast)
+        // console.log(fiveDayForecast)
+
+        query.textContent = `Weather in zipcode ${inputData.value}, ${response.city_name} County, ${response.state_code}`;
 
         inputData.value = "";
 
@@ -195,7 +198,8 @@ submitButton.addEventListener("click", function() {
         console.log(response)
         const fiveDayForecast = response.data.slice(0, 5)
         console.log(fiveDayForecast)
-        
+
+        query.textContent = `Weather in ${response.city_name}, ${response.state_code}`;
         inputData.value = "";
 
         for (let i = 0; i < highTemp.length; i++) {

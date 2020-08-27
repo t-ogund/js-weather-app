@@ -80,13 +80,13 @@ button {
     justify-content: center;
     position: relative;
     animation: weather-container;
-    animation-duration: 1s;
+    animation-duration: 2s;
     animation-fill-mode: forwards;
 }
 
 @keyframes weather-container {
-    0% {top: -25px; opacity: 0}
-    100% {top: 0px; opacity: 1}
+    0% {top: -10px; opacity: 0}
+    100% {top: 15px; opacity: 1}
 
 }
 
