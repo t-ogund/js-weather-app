@@ -103,7 +103,12 @@ onLoad();
 submitButton.addEventListener("click", function () {
   event.preventDefault();
 
-  if (inputData.value == Number(inputData.value)) {
+  if (inputData.value.length < 3) {
+    query.textContent = "Please enter a zipcode or city name"
+    query.style.fontSize = "1.2rem";
+  }
+
+  else if (inputData.value == Number(inputData.value) && inputData.value.length >=  5) {
     fetch(
       `https://api.weatherbit.io/v2.0/forecast/daily?&units=I&postal_code=${inputData.value}&country=US&key=ec69804a082347b592321d0caf2b15cb`
     )
@@ -112,7 +117,7 @@ submitButton.addEventListener("click", function () {
         console.log(response);
         const fiveDayForecast = response.data.slice(0, 5);
 
-        query.textContent = `Weather in zipcode ${inputData.value}, ${response.city_name} County, ${response.state_code}`;
+        query.textContent = `Weather in zipcode ${inputData.value.slice(0,5)}, ${response.city_name} County, ${response.state_code}`;
 
         inputData.value = "";
 
@@ -190,7 +195,9 @@ submitButton.addEventListener("click", function () {
             ].style.backgroundImage = `url("icons/icons/${fiveDayForecast[i].weather.icon}.png")`;
           }
         }
-      });
+      }).catch((error) => {
+        query.textContent = `${inputData.value} is invalid. Please enter a valid zip or city name`
+      })
   } else {
     fetch(
       `https://api.weatherbit.io/v2.0/forecast/daily?&units=I&city=${inputData.value}&country=US&key=ec69804a082347b592321d0caf2b15cb`
@@ -278,6 +285,8 @@ submitButton.addEventListener("click", function () {
             ].style.backgroundImage = `url("icons/icons/${fiveDayForecast[i].weather.icon}.png")`;
           }
         }
-      });
+      }).catch((error) => {
+        query.textContent = `${inputData.value} is invalid. Please enter a valid zip or city name`
+      })
   }
 });
